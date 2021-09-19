@@ -1,9 +1,25 @@
 // Hemos omitido los acentos en los comentarios por compatibilidad
 let hola;
-//Define las variables que necesites
+//Define las variables que necesites 
+const peticion = new XMLHttpRequest ();
+let fecha;
+
+peticion.addEventListener("load",()=>{
+  let dato;
+  if(peticion.status == 200 && peticion.readyState == 4){
+    dato=peticion.response;
+  }
+  fecha = Date(JSON.parse(dato).fechaActual);
+  console.log(fecha); 
+  
+});
+
+peticion.open('GET','info.json')  
+peticion.send();
 
 
-$(document).ready(function () {
+
+
 
   //Carga los datos que estan en el JSON (info.json) usando AJAX
 
@@ -31,4 +47,4 @@ $(document).ready(function () {
 
   //Modifica el DOM agregando el html generado
 
-});
+
