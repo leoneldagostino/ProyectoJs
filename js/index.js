@@ -9,10 +9,26 @@ peticion.addEventListener("load",()=>{
   if(peticion.status == 200 && peticion.readyState == 4){
     dato=peticion.response;
   }
-  fecha = Date(JSON.parse(dato).fechaActual);
-  console.log(fecha); 
+  fecha = new Date(JSON.parse(dato).fechaActual);
+  console.log(fecha);
+  
+  for(let i=0; i < JSON.parse(dato).eventos.length;i++){
+    
+    fechaEvento = new Date (JSON.parse(dato).eventos[i].fecha) 
+    if(fecha > fechaEvento){
+      console.log(`la fecha actual es ${fecha} y del evento que ya paso es ${fechaEvento}`)
+    }
+    else{
+      console.log(`la fecha actual es ${fecha} y del evento proximo es ${fechaEvento}`)
+    }
+    /* console.log(JSON.parse(dato).eventos[i].fecha) */
+    
+
+  }
   
 });
+
+
 
 peticion.open('GET','info.json')  
 peticion.send();
