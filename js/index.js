@@ -6,25 +6,21 @@ let fecha;
 
 peticion.addEventListener("load",()=>{
   let dato;
+  let eventoProximo;
+  let segundoEvento;
   if(peticion.status == 200 && peticion.readyState == 4){
     dato=peticion.response;
   }
   fecha = new Date(JSON.parse(dato).fechaActual);
   console.log(fecha);
   
-  for(let i=0; i < JSON.parse(dato).eventos.length;i++){
-    
-    fechaEvento = new Date (JSON.parse(dato).eventos[i].fecha) 
-    if(fecha > fechaEvento){
-      console.log(`la fecha actual es ${fecha} y del evento que ya paso es ${fechaEvento}`)
-    }
-    else{
-      console.log(`la fecha actual es ${fecha} y del evento proximo es ${fechaEvento}`)
-    }
-    /* console.log(JSON.parse(dato).eventos[i].fecha) */
-    
+  console.log(JSON.parse(dato).sort(function (a, b) {
 
-  }
+    return new Date(a.fecha).getTime() - new Date(b.fecha).getTime(); 
+ 
+ }));
+
+  
   
 });
 
