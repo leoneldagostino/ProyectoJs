@@ -6,19 +6,17 @@ let fecha;
 
 peticion.addEventListener("load",()=>{
   let dato;
-  let eventoProximo;
-  let segundoEvento;
+  let fechasOrdenadas;
   if(peticion.status == 200 && peticion.readyState == 4){
     dato=peticion.response;
   }
   fecha = new Date(JSON.parse(dato).fechaActual);
   console.log(fecha);
   
-  console.log(JSON.parse(dato).sort(function (a, b) {
-
+  fechasOrdenadas = JSON.parse(dato).eventos.sort(function (a, b) {
     return new Date(a.fecha).getTime() - new Date(b.fecha).getTime(); 
- 
- }));
+  });
+  console.log(fechasOrdenadas);
 
   
   
