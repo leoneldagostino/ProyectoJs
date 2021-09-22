@@ -3,10 +3,12 @@ let hola;
 //Define las variables que necesites 
 const peticion = new XMLHttpRequest ();
 let fecha;
-
+let eventosPasados=[] ;
+let eventosProximos=[];
 peticion.addEventListener("load",()=>{
   let dato;
   let fechasOrdenadas;
+
   if(peticion.status == 200 && peticion.readyState == 4){
     dato=peticion.response;
   }
@@ -17,9 +19,31 @@ peticion.addEventListener("load",()=>{
     return new Date(a.fecha).getTime() - new Date(b.fecha).getTime(); 
   });
   console.log(fechasOrdenadas);
+  
+  for(i = 0;i<fechasOrdenadas.length;i++){
+    let fe=fechasOrdenadas[i];
+    if(new Date(fe.fecha) < fecha){
+      eventosPasados.unshift(fe);
+      // console.log(eventosPasados);
+    }
+    else{
+      eventosProximos.unshift(fe);
+      console.log(eventosProximos)
+    }
+  }
+  document.getElementById('tituloEvento1').innerHTML = eventosProximos[0].nombre;
+  document.getElementById('fechaEvento1').innerHTML = eventosProximos[0].fecha;
+  document.getElementById('descripcionEvento1').innerHTML = eventosProximos[0].descripcion;
+  document.getElementById('tituloEvento2').innerHTML = eventosProximos[1].nombre;
+  document.getElementById('fechaEvento2').innerHTML = eventosProximos[1].fecha;
+  document.getElementById('descripcionEvento2').innerHTML = eventosProximos[1].descripcion;
+  document.getElementById('tituloEventoPasados1').innerHTML = eventosPasados[0].nombre;
+  document.getElementById('fechaEventoPasados1').innerHTML = eventosPasados[0].fecha;
+  document.getElementById('descripcionEventoPasados1').innerHTML = eventosPasados[0].descripcion;
+  document.getElementById('tituloEventoPasados2').innerHTML = eventosPasados[1].nombre;
+  document.getElementById('fechaEventoPasados2').innerHTML = eventosPasados[1].fecha;
+  document.getElementById('descripcionEventoPasados2').innerHTML = eventosPasados[1].descripcion;
 
-  
-  
 });
 
 
