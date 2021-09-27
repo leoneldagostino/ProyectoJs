@@ -31,20 +31,82 @@ peticion.addEventListener("load",()=>{
       console.log(eventosProximos)
     }
   }
-  document.getElementById('tituloEvento1').innerHTML = eventosProximos[0].nombre;
-  document.getElementById('fechaEvento1').innerHTML = eventosProximos[0].fecha;
-  document.getElementById('descripcionEvento1').innerHTML = eventosProximos[0].descripcion;
-  document.getElementById('tituloEvento2').innerHTML = eventosProximos[1].nombre;
-  document.getElementById('fechaEvento2').innerHTML = eventosProximos[1].fecha;
-  document.getElementById('descripcionEvento2').innerHTML = eventosProximos[1].descripcion;
+  function generarTarjetaProximos(){
+    for(i=0;i<2;i++){
+    var catDiv = document.createElement("div");
+    let cuerpo = document.getElementById("proximos");
+    let cartaDiv = document.createElement("div");
+    cuerpo.appendChild(catDiv); 
+    catDiv.setAttribute("class","card");
+    catDiv.setAttribute("style","width: 30rem; margin: 2.25rem");
+    catDiv.appendChild(cartaDiv);
+    cartaDiv.setAttribute("class","card-body");
+    let titulo = document.createElement("h3");
+    titulo.setAttribute("class","card-title");
+    let vinculo = document.createElement("a");
+    vinculo.setAttribute("href","");
+    titulo.appendChild(vinculo);
+    cartaDiv.appendChild(titulo);
+    let cuerpoCarta = document.createElement("p");
+    cartaDiv.appendChild(cuerpoCarta);
+    vinculo.innerHTML=eventosProximos[i].nombre;
+    cuerpoCarta.setAttribute("class","text-secondary")
+    cuerpoCarta.innerHTML = eventosProximos[i].fecha
+    let descripcion = document.createElement("p");
+    cuerpoCarta.appendChild(descripcion);
+    descripcion.setAttribute("class","text-dark")
+    descripcion.innerHTML = eventosProximos[i].descripcion;
+    
+  }  
+}
+
+function generarTarjetaPasados(){
+  for(i=0;i<2;i++){
+  var catDiv = document.createElement("div");
+  let cuerpo = document.getElementById("pasados");
+  let cartaDiv = document.createElement("div");
+  cuerpo.appendChild(catDiv); 
+  catDiv.setAttribute("class","card");
+  catDiv.setAttribute("style","width: 30rem; margin: 2.25rem");
+  catDiv.appendChild(cartaDiv);
+  cartaDiv.setAttribute("class","card-body");
+  let titulo = document.createElement("h3");
+  titulo.setAttribute("class","card-title");
+  let vinculo = document.createElement("a");
+  vinculo.setAttribute("href","");
+  titulo.appendChild(vinculo);
+  cartaDiv.appendChild(titulo);
+  let cuerpoCarta = document.createElement("p");
+  cartaDiv.appendChild(cuerpoCarta);
+  vinculo.innerHTML=eventosPasados[i].nombre;
+  cuerpoCarta.setAttribute("class","text-secondary")
+  cuerpoCarta.innerHTML = eventosPasados[i].fecha
+  let descripcion = document.createElement("p");
+  cuerpoCarta.appendChild(descripcion);
+  descripcion.setAttribute("class","text-dark")
+  descripcion.innerHTML = eventosPasados[i].descripcion;
+  
+   
+  
+}  
+}
+generarTarjetaProximos();
+generarTarjetaPasados();
+  /* document.getElementById('tituloEvento1').innerHTML = eventosProximos[1].nombre;
+  document.getElementById('fechaEvento1').innerHTML = eventosProximos[1].fecha;
+  document.getElementById('descripcionEvento1').innerHTML = eventosProximos[1].descripcion;
+  document.getElementById('tituloEvento2').innerHTML = eventosProximos[2].nombre;
+  document.getElementById('fechaEvento2').innerHTML = eventosProximos[2].fecha;
+  document.getElementById('descripcionEvento2').innerHTML = eventosProximos[2].descripcion;
   document.getElementById('tituloEventoPasados1').innerHTML = eventosPasados[0].nombre;
   document.getElementById('fechaEventoPasados1').innerHTML = eventosPasados[0].fecha;
   document.getElementById('descripcionEventoPasados1').innerHTML = eventosPasados[0].descripcion;
   document.getElementById('tituloEventoPasados2').innerHTML = eventosPasados[1].nombre;
   document.getElementById('fechaEventoPasados2').innerHTML = eventosPasados[1].fecha;
-  document.getElementById('descripcionEventoPasados2').innerHTML = eventosPasados[1].descripcion;
+  document.getElementById('descripcionEventoPasados2').innerHTML = eventosPasados[1].descripcion; */
 
 });
+console.log(peticion);
 
 
 
